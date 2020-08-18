@@ -1,0 +1,17 @@
+import axios from "axios";
+import { FETCH_USER } from "./types";
+
+export const fetchUser = () => {
+  //When redux sees a function being returned , thunk automatically runs this function and passes dispatch as a prop
+  return async function (dispatch) {
+    const res = await axios.get("/api/current_user");
+    dispatch({ type: FETCH_USER, payload: res.data });
+  };
+};
+
+export const handleToken = (token) => {
+  return async function (dispatch) {
+    const res = await axios.post("/api/stripe", token);
+    dispatch({ type: FETCH_USER, payload: res.data });
+  };
+};

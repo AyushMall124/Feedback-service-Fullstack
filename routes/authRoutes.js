@@ -7,14 +7,25 @@ module.exports = (app) => {
       scope: ["profile", "email"],
     })
   );
+  //Once authentication is done, the user is redirected to the dashboard
+  app.get(
+    "/auth/google/callback",
+    passport.authenticate("google"),
+    (req, res) => {
+      res.redirect("/surveys");
+    }
+  );
 
-  app.get("/auth/google/callback", passport.authenticate("google"));
   app.get("/api/logout", (req, res) => {
     req.logout();
-    res.send(req.user);
+    res.redirect("/");
   });
+
+  //Return null if no current user
   app.get("/api/current_user", (req, res) => {
     // res.send(req.user);
-    res.send(req.session);
+
+    //Cookie session
+    res.send(req.user);
   });
 };
