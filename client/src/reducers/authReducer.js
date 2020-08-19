@@ -1,4 +1,4 @@
-import { combineReducers } from "redux";
+// import { combineReducers } from "redux";
 
 import { FETCH_USER } from "../actions/types";
 export default function (state = null, action) {

@@ -7,7 +7,7 @@ class Payments extends React.Component {
     return (
       <StripeCheckout
         name="Feedback Services"
-        description="Pay  ₹50 for 5 credits"
+        description="Pay ₹50 for 5 credits"
         amount={5000}
         currency="INR"
         token={(token) => this.props.handleToken(token)}

@@ -5,8 +5,13 @@ const bodyParser = require("body-parser");
 
 const authRoutes = require("./routes/authRoutes");
 const billingRoutes = require("./routes/billingRoutes");
+const surveyRoutes = require("./routes/surveyRoutes");
 const mongoose = require("mongoose");
+
+//Run the model files => just call them
 require("./models/User");
+require("./models/Survey");
+
 const keys = require("./config/keys");
 require("./services/passport");
 mongoose.connect(keys.mongoURI);
@@ -26,6 +31,7 @@ app.use(passport.session());
 
 authRoutes(app);
 billingRoutes(app);
+surveyRoutes(app);
 
 //to make sure this works in production
 if (process.env.NODE_ENV === "production") {
